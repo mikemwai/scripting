@@ -1,12 +1,13 @@
 @echo off
-title Manual User Creation Script
-echo =========== Creating Users Manually ===========
+title Automated User Creation Script
+cd /d "%~dp0"
+echo =========== Creating Users Automatically ===========
 echo.
 
-set /p USERS=Enter usernames separated by spaces: 
 set /p TEMPPASS=Enter the temporary password: 
 
-for %%u in (%USERS%) do (
+:: Change to your desired group (i.e. Administrators, Users, etc.)
+for /f %%u in (users.txt) do (
     echo.
     echo Creating %%u ...
     net user %%u %TEMPPASS% /add
